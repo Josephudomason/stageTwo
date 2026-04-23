@@ -1,23 +1,12 @@
-# React + Vite
+# React + Vite project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## stage2
+# stage2
 reactjs invoice project
 
-## Architecture Explanation:
+# Architecture Explanation:
 This project is a small single-page application built with React and Vite.
 
-# Main files
+## Main files
 - src/App.jsx: Contains the core UI, page state, invoice state, form logic, validation, data normalization, modal handling, and utility helpers.
 
 - src/App.css: Contains the app-specific styling, layout rules, theme styling, and responsive behavior.
@@ -28,13 +17,14 @@ vite.config.js:  Keeps the Vite setup simple and lightweight for local developme
 State and data flow
 The app manages:
 
-invoice collection
-selected invoice
-current page view
-filter state
-create/edit drawer state
-delete confirmation state
-theme state
+- invoice collection
+- selected invoice
+- current page view
+- filter state
+- create/edit drawer state
+- delete confirmation state
+- theme state
+
 Invoice data is normalized before use so that totals, due dates, and status-related rendering stay consistent. The app also restores persisted invoice data from localStorage and defensively normalizes it again to avoid malformed saved state causing runtime issues.
 
 Persistence
