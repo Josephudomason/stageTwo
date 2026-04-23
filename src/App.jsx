@@ -483,6 +483,34 @@ function InvoiceFormDrawer({ mode, invoice, onClose, onSave }) {
   const dialogRef = useDialog({ isOpen: true, onClose })
   const [formState, setFormState] = useState(() => createFormState(invoice))
   const [errors, setErrors] = useState({})
+  const editSubmitStatus = normalizeStatus(invoice?.status)
+
+  const focusFirstError = (validationErrors) => {
+    if (!Object.keys(validationErrors).length) {
+      return
+    }
+
+    window.requestAnimationFrame(() => {
+      const dialogNode = dialogRef.current
+      if (!dialogNode) {
+        return
+      }
+
+      const firstInvalidField =
+        dialogNode.querySelector('.field__control.has-error') ??
+        dialogNode.querySelector('.items-error')
+
+      if (!firstInvalidField) {
+        return
+      }
+
+      firstInvalidField.scrollIntoView({ behavior: 'smooth', block: 'center' })
+
+      if (typeof firstInvalidField.focus === 'function') {
+        firstInvalidField.focus()
+      }
+    })
+  }
 
   const handleChange = (section, field, value) => {
     setFormState((current) => ({
@@ -529,6 +557,7 @@ function InvoiceFormDrawer({ mode, invoice, onClose, onSave }) {
     setErrors(validationErrors)
 
     if (Object.keys(validationErrors).length) {
+      focusFirstError(validationErrors)
       return
     }
 
@@ -753,6 +782,12 @@ function InvoiceFormDrawer({ mode, invoice, onClose, onSave }) {
           </section>
         </div>
 
+        {Object.keys(errors).length ? (
+          <p className="form-error-banner" role="alert">
+            Please review the highlighted fields before continuing.
+          </p>
+        ) : null}
+
         <footer className={`drawer-footer drawer-footer--${mode}`}>
           {mode === 'edit' ? (
             <div className="drawer-footer__actions">
@@ -762,7 +797,7 @@ function InvoiceFormDrawer({ mode, invoice, onClose, onSave }) {
               <button
                 type="button"
                 className="primary-button primary-button--compact"
-                onClick={() => submitForm('pending')}
+                onClick={() => submitForm(editSubmitStatus)}
               >
                 Save Changes
               </button>
