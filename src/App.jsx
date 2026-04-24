@@ -355,7 +355,7 @@ function InvoiceListItem({ invoice, onOpen }) {
     <article className="invoice-card">
       <span className="invoice-card__id">#{invoice.id}</span>
       <p className="muted-label invoice-card__due">{formatDisplayDate(invoice.paymentDue)}</p>
-      <h2 className="invoice-card__client">{invoice.clientName || 'Untitled client'}</h2>
+      <h2 className="invoice-card__client">{invoice.clientName || 'John Morrison'}</h2>
       <strong className="invoice-card__amount">{formatCurrency(invoice.total)}</strong>
       <div className="invoice-card__status">
         <StatusBadge status={invoice.status} />
