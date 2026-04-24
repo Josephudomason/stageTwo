@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { FiChevronDown, FiChevronRight, FiMoon, FiSun, FiTrash2 } from 'react-icons/fi'
 import './App.css'
 import emptyInvoiceImage from './assets/image.png'
 import appIcon from './assets/icon.png'
@@ -285,7 +286,7 @@ function Sidebar({ theme, onToggleTheme }) {
           onClick={onToggleTheme}
           aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
-          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          {theme === 'dark' ? <FiSun /> : <FiMoon />}
         </button>
 
         <img className="avatar" src={profileAvatar} alt="Profile avatar" />
@@ -322,7 +323,7 @@ function InvoiceListHeader({
             <span className="filter-button__value">
               {activeFilters.length ? activeFilters.join(', ') : 'All'}
             </span>
-            <ChevronIcon />
+            <FiChevronDown />
           </button>
 
           {isFilterOpen ? (
@@ -366,7 +367,7 @@ function InvoiceListItem({ invoice, onOpen }) {
         onClick={onOpen}
         aria-label={`View invoice ${invoice.id}`}
       >
-        <ChevronRightIcon />
+        <FiChevronRight />
       </button>
     </article>
   )
@@ -767,7 +768,7 @@ function InvoiceFormDrawer({ mode, invoice, onClose, onSave }) {
                       onClick={() => handleRemoveItem(item.id)}
                       aria-label={`Remove item ${index + 1}`}
                     >
-                      <TrashIcon />
+                      <FiTrash2 />
                     </button>
                   </div>
                 </div>
@@ -1280,74 +1281,6 @@ function formatDateInput(date) {
   const month = String(date.getMonth() + 1).padStart(2, '0')
   const day = String(date.getDate()).padStart(2, '0')
   return `${year}-${month}-${day}`
-}
-
-function ChevronIcon() {
-  return (
-    <svg viewBox="0 0 12 8" aria-hidden="true">
-      <path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" strokeWidth="2" />
-    </svg>
-  )
-}
-
-function ChevronRightIcon() {
-  return (
-    <svg viewBox="0 0 8 12" aria-hidden="true">
-      <path
-        d="m1.5 1.5 4.5 4.5-4.5 4.5"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2.75"
-      />
-    </svg>
-  )
-}
-
-function SunIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M12 5V3m0 18v-2m7-7h2M3 12H1m15.657 6.657 1.414 1.414M4.929 4.929l1.414 1.414m9.314-1.414-1.414 1.414M6.343 17.657l-1.414 1.414M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  )
-}
-
-function MoonIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M20 15.3A8.95 8.95 0 0 1 8.7 4a9 9 0 1 0 11.3 11.3Z"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  )
-}
-
-function TrashIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        d="M4 7h16m-2 0-1 12H7L6 7m3-3h6l1 3H8l1-3Z"
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  )
 }
 
 export default App
