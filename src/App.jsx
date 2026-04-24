@@ -1293,7 +1293,14 @@ function ChevronIcon() {
 function ChevronRightIcon() {
   return (
     <svg viewBox="0 0 8 12" aria-hidden="true">
-      <path d="m1 1 5 5-5 5" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path
+        d="m1.5 1.5 4.5 4.5-4.5 4.5"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2.75"
+      />
     </svg>
   )
 }
